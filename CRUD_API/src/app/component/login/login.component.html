@@ -1,0 +1,48 @@
+<div class="wrapper">
+  <div class="logo">
+    <img
+      src="https://www.freepnglogos.com/uploads/twitter-logo-png/twitter-bird-symbols-png-logo-0.png"
+      alt=""
+    />
+  </div>
+  <div class="text-center mt-4 name">Twitter</div>
+  <form
+    action=""
+    class="p-3 mt-3"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="form-field d-flex align-items-center">
+      <span class="far fa-user"></span>
+      <input
+        type="text"
+        name="userName"
+        formControlName="email"
+        id="userName"
+        placeholder="Email"
+      />
+      @if(loginForm.get('email')?.hasError('required')&&
+      loginForm.get('email')?.touched){
+      <div>nhập email</div>
+      }
+    </div>
+    <div class="form-field d-flex align-items-center">
+      <span class="fas fa-key"></span>
+      <input
+        type="password"
+        name="password"
+        formControlName="password"
+        id="pwd"
+        placeholder="Password"
+      />
+    </div>
+    @if(loginForm.get('password')?.hasError('required')&&
+    loginForm.get('password')?.touched){
+    <div>nhập password</div>
+    }
+    <button class="btn mt-3">Login</button>
+  </form>
+  <div class="text-center fs-6">
+    <a href="#">Forget password?</a> or <a href="#">Sign up</a>
+  </div>
+</div>
