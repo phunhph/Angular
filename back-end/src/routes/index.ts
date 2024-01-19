@@ -11,7 +11,7 @@ router.put("/users/:id", UserController.updateUser);
 router.delete("/users/:id", UserController.deleteUser);
 
 router.get("/Messager", messagecontroller.getMessagers);
-router.get("/Messager/:id", messagecontroller.getMessager);
+router.get("/Messager/:id_in/:id_out", messagecontroller.getMessager);
 router.post("/Messager", messagecontroller.createMessager);
 router.delete("/Messager/:id", messagecontroller.deleteMessager);
 export default router;

@@ -94,6 +94,9 @@
           <button>
             <a href="user/{{ item._id }}"> edit</a>
           </button>
+          <button>
+            <a (click)="onChat(item._id!)"> chat</a>
+          </button>
           <button (click)="deleteUser(item._id!)">delete</button>
         </td>
       </tr>

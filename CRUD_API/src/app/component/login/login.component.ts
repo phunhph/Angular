@@ -10,6 +10,8 @@ import { UsersService } from '../../services/users.service';
 import { LoginService } from '../../services/login.service';
 import { response } from 'express';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { IUser } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +25,7 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(
+    private cookieService: CookieService,
     private fb: FormBuilder,
     private loginservice: LoginService,
     private router: Router
@@ -32,7 +35,11 @@ export class LoginComponent {
       password: ['', Validators.required],
     });
   }
-
+  ngOnInit(): void {
+    if (this.cookieService.get('user')) {
+      this.router.navigate(['/list']);
+    }
+  }
   onClose() {
     this.onCloseModel.emit(false);
   }
@@ -48,6 +55,11 @@ export class LoginComponent {
             response.message === 'delete user successfully' &&
             response.data !== null
           ) {
+            const user: IUser = response.data;
+            // Convert user object to a string using JSON.stringify
+            const userString = JSON.stringify(user);
+            // Set the user object as a string in the cookie
+            this.cookieService.set('user', userString);
             this.router.navigate(['/list']);
           } else {
             console.log('Đăng nhập thất bại');

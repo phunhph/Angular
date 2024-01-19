@@ -1,0 +1,22 @@
+<body>
+  <div class="chat-container">
+    @if (mess ) { @for (item of mess; track $index) { @if (item.id_in ==
+    user._id) {
+    <div class="message-box mes-in">
+      <p>{{ item.message }}</p>
+    </div>
+    } @else {
+    <div class="message-box mess-out">
+      <p>{{ item.message }}</p>
+    </div>
+    } } } @else {
+    <div>No messages</div>
+    }
+
+    <!-- Chat input form -->
+    <form class="message-form">
+      <input type="text" placeholder="Type your message..." />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</body>

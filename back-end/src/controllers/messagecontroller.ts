@@ -18,9 +18,16 @@ class MessageController {
     response: express.Response
   ) => {
     try {
-      const { id } = request.params;
-      const userAll = await UserModel.findById(id);
-      return response.status(200).json({ data: userAll });
+      const { id_in, id_out } = request.params;
+      const userAll = await UserModel.find({
+        $or: [
+          { id_in: id_in, id_out: id_out },
+          { id_in: id_out, id_out: id_in },
+        ],
+      });
+      return response
+        .status(200)
+        .json({ message: "get user successfully", data: userAll });
     } catch (err) {
       console.log("error");
     }
