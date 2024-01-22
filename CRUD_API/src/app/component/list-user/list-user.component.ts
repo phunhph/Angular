@@ -84,33 +84,5 @@ export class ListUserComponent implements OnInit {
   }
 
   // chat
-  onChat(id_in: string) {
-    const userString = this.cookieService.get('user');
-    // Parse the user string back to an object using JSON.parse
-    const user: IUser = JSON.parse(userString);
-    const id_out: string = user._id || '';
-    this.sessagerService.getChat(id_in, id_out).subscribe(
-      (response) => {
-        if (
-          response &&
-          response.message === 'get user successfully' &&
-          response.data !== null
-        ) {
-          const mess: IMessage = response.data;
-
-          // Convert user object to a string using JSON.stringify
-          const messString = JSON.stringify(mess);
-          // Set the user object as a string in the cookie
-          this.cookieService.set('mess', messString);
-
-          this.router.navigate(['/chat']);
-        } else {
-          console.log('Cuoc hoi thoai khong ton tai');
-        }
-      },
-      (error) => {
-        console.error('Lỗi khi thực hiện đăng nhập:', error);
-      }
-    );
-  }
+  onChat(id_in: string) {}
 }

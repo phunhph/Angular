@@ -12,10 +12,32 @@
     } } } @else {
     <div>No messages</div>
     }
-
     <!-- Chat input form -->
-    <form class="message-form">
-      <input type="text" placeholder="Type your message..." />
+    <form
+      class="message-form"
+      [formGroup]="messagesForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <input
+        type="hidden"
+        value="{{ user._id }}"
+        name="id_out"
+        id=""
+        formControlName="id_out"
+      />
+      <input
+        type="hidden"
+        value="{{ id_in }}"
+        name="id_in"
+        id=""
+        formControlName="id_in"
+      />
+      <input
+        type="text"
+        placeholder="Type your message..."
+        name="mess"
+        formControlName="message"
+      />
       <button type="submit">Send</button>
     </form>
   </div>
