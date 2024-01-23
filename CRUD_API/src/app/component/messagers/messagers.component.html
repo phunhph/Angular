@@ -1,7 +1,7 @@
 <body>
   <div class="chat-container">
-    @if (mess ) { @for (item of mess; track $index) { @if (item.id_in ==
-    user._id) {
+    @if (mess && mess.length > 0) { @for (item of mess; track $index) { @if
+    (item.id_in == user._id) {
     <div class="message-box mes-in">
       <p>{{ item.message }}</p>
     </div>
